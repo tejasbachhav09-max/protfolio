@@ -158,6 +158,8 @@ p { font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); }
     letter-spacing: -0.02em;
 }
 .logo-icon { color: var(--accent-primary); display: flex; align-items: center; }
+.nav-logo-img { height: 32px; width: auto; object-fit: contain; }
+.footer-logo { height: 40px; margin-right: 0.5rem; }
 
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {

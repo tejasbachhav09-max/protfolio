@@ -101,8 +101,9 @@ if (dateInput) {
 }
 
 // 6. Supabase Integration
-const supabaseUrl = 'https://hdizxldtzuyeegiqmrah.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkaXp4bGR0enV5ZWVnaXFtcmFoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3ODk2MTEsImV4cCI6MjA5MDM2NTYxMX0.fCrNyQllJZnXGECRvuSpyRmAuK-8cO1uAbfpORs0aLc';
+const supabaseUrl = 'https://rdyipalmkbbbfsgfdwma.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkeWlwYWxta2JiYmZzZ2Zkd21hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NjgxOTAsImV4cCI6MjA5MDQ0NDE5MH0.F9z6H5-ZLcvOYFd7M7LFJkILEaiHZIw8kGQYdomleaI';
+
 
 let supabaseClient = null;
 try {
