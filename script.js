@@ -101,8 +101,9 @@ if (dateInput) {
 }
 
 // 6. Supabase Integration
-const supabaseUrl = 'https://rdyipalmkbbbfsgfdwma.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkeWlwYWxta2JiYmZzZ2Zkd21hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4NjgxOTAsImV4cCI6MjA5MDQ0NDE5MH0.F9z6H5-ZLcvOYFd7M7LFJkILEaiHZIw8kGQYdomleaI';
+// Credentials are now loaded from supabase-config.js to keep the main logic clean.
+const supabaseUrl = SUPABASE_CONFIG.url;
+const supabaseKey = SUPABASE_CONFIG.key;
 
 
 let supabaseClient = null;
