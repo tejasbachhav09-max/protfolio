@@ -1,15 +1,113 @@
-// 1. Scroll Reveal Animation (Fade In) - Placed at the top so it always runs
+// 1. Interaction Engine - Obsidian Kinetic
+
+// --- CUSTOM CURSOR & SPOTLIGHT ---
+const cursor = document.getElementById('cursor');
+const spotlight = document.getElementById('cursor-spotlight');
+const glows = document.querySelectorAll('.glow');
+
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Move spotlight instantly for zero lag
+    if (spotlight) {
+        spotlight.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+    }
+
+    // Parallax background glows
+    glows.forEach((glow, index) => {
+        const speed = (index + 1) * 2;
+        const x = (window.innerWidth / 2 - mouseX) / (25 * speed);
+        const y = (window.innerHeight / 2 - mouseY) / (25 * speed);
+        glow.style.transform = `translate(${x}px, ${y}px)`;
+    });
+});
+
+// Smooth cursor follow
+function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
+    
+    if (cursor) {
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+    }
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// --- MAGNETIC & TILT ELEMENTS ---
+const interactives = document.querySelectorAll('[data-magnetic], .card, .service-card, .price-header-card, .btn');
+
+interactives.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Localized Glow (for buttons and cards)
+        el.style.setProperty('--mouse-x', `${x}px`);
+        el.style.setProperty('--mouse-y', `${y}px`);
+
+        // Magnetic / Tilt Logic
+        if (el.hasAttribute('data-magnetic') || el.classList.contains('btn')) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const moveX = (x - centerX) * 0.2;
+            const moveY = (y - centerY) * 0.2;
+            el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        } else if (el.classList.contains('card') || el.classList.contains('service-card')) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (centerY - y) / 10;
+            const rotateY = (x - centerX) / 10;
+            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+        }
+        
+        // Cursor Feedback
+        if (cursor) cursor.classList.add('active');
+    });
+
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = ``;
+        if (cursor) cursor.classList.remove('active');
+    });
+});
+
+// --- KINETIC SCROLLING (LENIS) ---
+try {
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+} catch (e) {
+    console.warn('Lenis scroll engine failed to initialize:', e);
+}
+
+// 2. Scroll Reveal Animation (Fade In)
 const observerOptions = {
-    root: null,
-    rootMargin: '0px',
     threshold: 0.15
 };
 
-const observer = new IntersectionObserver((entries, observer) => {
+const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('appear');
-            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -18,28 +116,14 @@ document.querySelectorAll('.fade-in').forEach(element => {
     observer.observe(element);
 });
 
-// Ensure immediate view items appear immediately if already in view
-setTimeout(() => {
-    document.querySelectorAll('.fade-in').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            el.classList.add('appear');
-        }
-    });
-}, 100);
-
-// 2. Initialize Feather Icons safely
+// 3. Initialize Feather Icons
 try {
     if (typeof feather !== 'undefined') {
         feather.replace();
-    } else {
-        console.warn('Feather icons could not be loaded.');
     }
-} catch (e) {
-    console.error('Error loading feather icons:', e);
-}
+} catch (e) {}
 
-// 3. Navbar & Menu Logic
+// 4. Navbar & Menu Logic
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -47,28 +131,9 @@ if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-        });
-    });
 }
 
-const navbar = document.getElementById('navbar');
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(6, 6, 8, 0.95)';
-            navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-        } else {
-            navbar.style.background = 'rgba(6, 6, 8, 0.8)';
-            navbar.style.boxShadow = 'none';
-        }
-    });
-}
-
-// 4. Booking Modal Logic
+// 5. Booking Modal Logic
 const bookingModal = document.getElementById('bookingModal');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const openModalBtns = document.querySelectorAll('.open-modal-btn');
@@ -86,38 +151,22 @@ if (bookingModal && closeModalBtn) {
     });
 
     bookingModal.addEventListener('click', (e) => {
-        // close modal if user clicks outside of the modal container
         if (e.target === bookingModal) {
             bookingModal.classList.remove('active');
         }
     });
 }
 
-// 5. Set minimum date to today (prevent booking in the past)
-const dateInput = document.getElementById('preferredDate');
-if (dateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
-}
-
 // 6. Supabase Integration
-// Credentials are now loaded from supabase-config.js to keep the main logic clean.
 const supabaseUrl = SUPABASE_CONFIG.url;
 const supabaseKey = SUPABASE_CONFIG.key;
-
 
 let supabaseClient = null;
 try {
     if (typeof supabase !== 'undefined') {
         supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-    } else if (window.supabase) {
-        supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-    } else {
-        console.warn('Supabase client library not found.');
     }
-} catch (e) {
-    console.error('Failed to initialize Supabase:', e);
-}
+} catch (e) {}
 
 const bookingForm = document.getElementById('bookingForm');
 const bookingSubmitBtn = document.getElementById('bookingSubmitBtn');
@@ -127,7 +176,7 @@ if (bookingForm && bookingSubmitBtn) {
         e.preventDefault();
 
         if (!supabaseClient) {
-            alert('Database connection failed. Please ensure you are connected to the internet.');
+            alert('Database connection failed.');
             return;
         }
 
@@ -146,18 +195,17 @@ if (bookingForm && bookingSubmitBtn) {
         };
 
         try {
-            const { data, error } = await supabaseClient
+            const { error } = await supabaseClient
                 .from('leads')
                 .insert([payload]);
 
             if (error) throw error;
 
-            alert('🎉 Demo booked successfully for ' + payload.preferred_date + ' at ' + payload.preferred_time + '!\n\nWe will confirm your slot shortly.');
+            alert('🎉 Demo booked successfully for ' + payload.preferred_date + '!\nWe will confirm shortly.');
             bookingForm.reset();
             bookingModal.classList.remove('active');
         } catch (error) {
-            console.error('Error inserting lead:', error);
-            alert('Error: ' + (error.message || JSON.stringify(error)));
+            alert('Error: ' + error.message);
         } finally {
             bookingSubmitBtn.innerText = originalBtnText;
             bookingSubmitBtn.disabled = false;

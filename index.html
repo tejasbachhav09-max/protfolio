@@ -7,13 +7,22 @@
     <meta name="description" content="Turn Your Business Into a 24/7 AI-Powered Sales Machine. Complete business automation systems for service-based businesses.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Feather icons for fast, premium SVGs -->
+    <!-- Kinetic Scroll Engine -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="icon" type="image/png" href="logo.png?v=2">
 </head>
 <body>
+    <div id="cursor"></div>
+    <div id="cursor-spotlight"></div>
+    <div class="mesh-gradient"></div>
+
+    <!-- Background Atmosphere -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
@@ -22,13 +31,13 @@
                 Trinetra AI
             </a>
             <div class="nav-links">
-                <a href="#problem">The Problem</a>
-                <a href="#solution">Our System</a>
-                <a href="#services">Services</a>
-                <a href="#process">How It Works</a>
-                <a href="#pricing">Pricing</a>
+                <a href="#problem" data-magnetic>The Problem</a>
+                <a href="#solution" data-magnetic>Our System</a>
+                <a href="#services" data-magnetic>Services</a>
+                <a href="#process" data-magnetic>How It Works</a>
+                <a href="#pricing" data-magnetic>Pricing</a>
             </div>
-            <a href="#book-form" class="btn btn-primary btn-sm open-modal-btn">Book a Call</a>
+            <a href="#book-form" class="btn btn-primary btn-sm open-modal-btn" data-magnetic>Book a Call</a>
             <button class="menu-toggle"><i data-feather="menu"></i></button>
         </div>
     </nav>
@@ -38,12 +47,12 @@
         <div class="glow glow-1"></div>
         <div class="glow glow-2"></div>
         <div class="container hero-content fade-in">
-            <div class="badge">Next-Gen Business Automation</div>
-            <h1>Turn Your Business Into a <span class="text-gradient">24/7 AI-Powered</span> Sales Machine</h1>
-            <p class="subtitle">We build AI systems that capture leads, respond instantly, follow up automatically, and book appointments — without you lifting a finger.</p>
+            <div class="badge" data-magnetic><span class="pulse"></span> Intelligence as an Architecture</div>
+            <h1>The Architecture of <span class="text-gradient">Intelligence</span></h1>
+            <p class="subtitle">Deploy autonomous AI agents that handle your sales, support, and scaling—engineered for technical excellence and human-like precision.</p>
             <div class="hero-cta">
-                <a href="#book-form" class="btn btn-primary btn-lg open-modal-btn">Book a Free Demo</a>
-                <a href="#solution" class="btn btn-secondary btn-lg">See How It Works</a>
+                <a href="#book-form" class="btn btn-primary btn-lg open-modal-btn" data-magnetic>Initialize Deployment</a>
+                <a href="#solution" class="btn btn-secondary btn-lg" data-magnetic>Detailed Logic</a>
             </div>
             <div class="social-proof-small">
                 <div class="avatars">
@@ -270,7 +279,7 @@
             <div class="pricing-cards-modern">
                 <div class="price-header-card">
                     <h3>Starter 🚀</h3>
-                    <div class="price-value">$499<span>/mo</span></div>
+                    <div class="price-value">$500 – $800<span>/mo</span></div>
                     <p class="best-for">Small businesses / solo agents</p>
                     <div class="setup-fee">Setup Fee: $1,000 (one-time)</div>
                     <a href="#book-form" class="btn btn-outline open-modal-btn w-100">Get Started</a>
@@ -278,78 +287,140 @@
                 <div class="price-header-card popular">
                     <div class="popular-badge">Most Popular</div>
                     <h3>Growth 📈</h3>
-                    <div class="price-value">$999<span>/mo</span></div>
+                    <div class="price-value">$1,000 – $1,200<span>/mo</span></div>
                     <p class="best-for">Growing teams</p>
                     <div class="setup-fee">Setup Fee: $1,500 (one-time)</div>
                     <a href="#book-form" class="btn btn-primary open-modal-btn w-100">Get Started</a>
                 </div>
                 <div class="price-header-card">
                     <h3>Scale 💎</h3>
-                    <div class="price-value">$1,499<span>/mo</span></div>
+                    <div class="price-value">$1,200 – $1,500+<span>/mo</span></div>
                     <p class="best-for">Established agencies / high vol</p>
                     <div class="setup-fee">Setup Fee: $2,000+ (one-time)</div>
                     <a href="#book-form" class="btn btn-outline open-modal-btn w-100">Get Started</a>
                 </div>
             </div>
 
-            <div class="pricing-table-container mt-4">
-                <table class="pricing-matrix">
-                    <thead>
-                        <tr>
-                            <th>Features</th>
-                            <th>Starter</th>
-                            <th class="popular-col">Growth</th>
-                            <th>Scale</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="section-row"><td colspan="4">Core Systems</td></tr>
-                        <tr><td>AI CRM Setup</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i> Advanced</td></tr>
-                        <tr><td>Lead Management System</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i> Advanced</td></tr>
-                        <tr><td>Pipeline Automation</td><td>Basic</td><td class="popular-col">Advanced</td><td>Fully Custom</td></tr>
-                        <tr><td>Dashboard & Reporting</td><td>Basic</td><td class="popular-col">Advanced</td><td>Custom Analytics</td></tr>
-                        
-                        <tr class="section-row"><td colspan="4">AI Calling Capabilities</td></tr>
-                        <tr><td>Inbound AI Call Handling</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Outbound AI Calling</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Unlimited</td></tr>
-                        <tr><td>Lead Qualification Calls</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i> Advanced</td></tr>
-                        <tr><td>Call Recording & Logs</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Smart Follow-up Calls</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+            <!-- Separate Feature Tables -->
+            <div class="pricing-tables-grid mt-4">
 
-                        <tr class="section-row"><td colspan="4">WhatsApp & Chat</td></tr>
-                        <tr><td>WhatsApp Chatbot</td><td>Basic</td><td class="popular-col">Advanced</td><td>Fully Custom</td></tr>
-                        <tr><td>Auto Replies</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Lead Capture via Chat</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Multi-platform Chat</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Smart AI Conversations</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Advanced AI</td></tr>
+                <!-- 1. Core Systems -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">Core Systems</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>AI CRM Setup</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i> Advanced</td></tr>
+                            <tr><td>Lead Management System</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i> Advanced</td></tr>
+                            <tr><td>Pipeline Automation</td><td>Basic</td><td class="popular-col">Advanced</td><td>Fully Custom</td></tr>
+                            <tr><td>Dashboard &amp; Reporting</td><td>Basic</td><td class="popular-col">Advanced</td><td>Custom Analytics</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <tr class="section-row"><td colspan="4">Calendar & Booking</td></tr>
-                        <tr><td>Calendar Integration</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Auto Booking</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Reminder System</td><td>Basic</td><td class="popular-col">Advanced</td><td>Smart AI Reminders</td></tr>
-                        <tr><td>No-show Recovery</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                <!-- 2. AI Calling Capabilities -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">AI Calling Capabilities</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Inbound AI Call Handling</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Outbound AI Calling</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Unlimited</td></tr>
+                            <tr><td>Lead Qualification Calls</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i> Advanced</td></tr>
+                            <tr><td>Call Recording &amp; Logs</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Smart Follow-up Calls</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <tr class="section-row"><td colspan="4">Integrations & Workflows</td></tr>
-                        <tr><td>Workflow Automation</td><td>Basic</td><td class="popular-col">Advanced</td><td>Fully Custom</td></tr>
-                        <tr><td>CRM Integrations</td><td>Limited</td><td class="popular-col">Multiple</td><td>Unlimited</td></tr>
-                        <tr><td>API Integrations</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Full Access</td></tr>
-                        <tr><td>Custom Automations</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Fully Custom</td></tr>
+                <!-- 3. WhatsApp & Chat -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">WhatsApp &amp; Chat</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>WhatsApp Chatbot</td><td>Basic</td><td class="popular-col">Advanced</td><td>Fully Custom</td></tr>
+                            <tr><td>Auto Replies</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Lead Capture via Chat</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Multi-platform Chat</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Smart AI Conversations</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Advanced AI</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <tr class="section-row"><td colspan="4">Funnels & Outreach</td></tr>
-                        <tr><td>Lead Capture Funnels</td><td>Basic</td><td class="popular-col">Advanced</td><td>High-converting</td></tr>
-                        <tr><td>Email/SMS Follow-ups</td><td>Basic</td><td class="popular-col">Advanced</td><td>AI-driven sequences</td></tr>
-                        <tr><td>Cold Outreach Setup</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Optional Add-on</td><td>Included</td></tr>
-                        <tr><td>Funnel Optimization</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Ongoing</td></tr>
+                <!-- 4. Calendar & Booking -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">Calendar &amp; Booking</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Calendar Integration</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Auto Booking</td><td><i data-feather="check" class="text-accent"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Reminder System</td><td>Basic</td><td class="popular-col">Advanced</td><td>Smart AI Reminders</td></tr>
+                            <tr><td>No-show Recovery</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <tr class="section-row"><td colspan="4">Support & Strategy</td></tr>
-                        <tr><td>Support</td><td>Email</td><td class="popular-col">Priority</td><td>Dedicated Manager</td></tr>
-                        <tr><td>Monthly Optimization</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
-                        <tr><td>Strategy Calls</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">1/month</td><td>Weekly</td></tr>
-                        <tr><td>Custom Requests</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Priority</td></tr>
-                    </tbody>
-                </table>
+                <!-- 5. Integrations & Workflows -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">Integrations &amp; Workflows</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Workflow Automation</td><td>Basic</td><td class="popular-col">Advanced</td><td>Fully Custom</td></tr>
+                            <tr><td>CRM Integrations</td><td>Limited</td><td class="popular-col">Multiple</td><td>Unlimited</td></tr>
+                            <tr><td>API Integrations</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Full Access</td></tr>
+                            <tr><td>Custom Automations</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Fully Custom</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 6. Funnels & Outreach -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">Funnels &amp; Outreach</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Lead Capture Funnels</td><td>Basic</td><td class="popular-col">Advanced</td><td>High-converting</td></tr>
+                            <tr><td>Email/SMS Follow-ups</td><td>Basic</td><td class="popular-col">Advanced</td><td>AI-driven sequences</td></tr>
+                            <tr><td>Cold Outreach Setup</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Optional Add-on</td><td>Included</td></tr>
+                            <tr><td>Funnel Optimization</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Ongoing</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 7. Support & Strategy -->
+                <div class="pricing-table-container feature-table-card">
+                    <table class="pricing-matrix">
+                        <thead>
+                            <tr><th colspan="4" class="table-category-title">Support &amp; Strategy</th></tr>
+                            <tr><th>Features</th><th>Starter</th><th class="popular-col">Growth</th><th>Scale</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Support</td><td>Email</td><td class="popular-col">Priority</td><td>Dedicated Manager</td></tr>
+                            <tr><td>Monthly Optimization</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col"><i data-feather="check" class="text-accent"></i></td><td><i data-feather="check" class="text-accent"></i></td></tr>
+                            <tr><td>Strategy Calls</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">1/month</td><td>Weekly</td></tr>
+                            <tr><td>Custom Requests</td><td><i data-feather="x" class="text-muted"></i></td><td class="popular-col">Limited</td><td>Priority</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
 
+            <!-- Optional Add-ons -->
             <div class="pricing-addons mt-4">
                 <h3>Optional Add-ons</h3>
                 <div class="addons-grid">
