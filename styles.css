@@ -829,51 +829,104 @@ input:focus, textarea:focus, select:focus {
 
 /* Pricing Matrix Table */
 .mt-4 { margin-top: 4rem; }
+
+/* Grid for separate feature tables */
+.pricing-tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+}
+
 .pricing-table-container {
     width: 100%;
     overflow-x: auto;
-    background: transparent;
+    background: hsla(0, 0%, 100%, 0.02);
     border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
+
+.pricing-table-container::before {
+    content: '';
+    position: absolute;
+    top: var(--mouse-y, 0px);
+    left: var(--mouse-x, 0px);
+    width: 0px;
+    height: 0px;
+    background: radial-gradient(circle, hsla(180, 100%, 50%, 0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pricing-table-container:hover::before {
+    width: 500px;
+    height: 500px;
+}
+
+.pricing-table-container:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
 .pricing-matrix {
     width: 100%;
     border-collapse: collapse;
-    min-width: 800px;
     text-align: left;
+    position: relative;
+    z-index: 1;
 }
+
+/* Category title row */
+.table-category-title {
+    text-align: center !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: var(--accent-primary) !important;
+    background: hsla(180, 100%, 50%, 0.05) !important;
+    padding: 1.2rem 1.5rem !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace !important;
+    border-bottom: 1px solid var(--accent-primary) !important;
+}
+
 .pricing-matrix th, .pricing-matrix td {
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-bottom: 1px dashed var(--border);
 }
 .pricing-matrix th {
-    background: rgba(255,255,255,0.02);
+    background: hsla(0, 0%, 100%, 0.02);
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 600;
 }
-.pricing-matrix td:first-child { font-weight: 500; color: white; width: 40%; font-family: 'JetBrains Mono', monospace; }
-.pricing-matrix td { color: var(--text-secondary); width: 20%; font-size: 0.95rem; }
-.pricing-matrix .section-row td {
-    background: rgba(0, 240, 255, 0.05);
-    font-weight: 700;
-    color: var(--accent-primary);
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--accent-primary);
-    border-top: 1px solid var(--accent-primary);
-}
+.pricing-matrix td:first-child { font-weight: 500; color: white; width: 40%; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+.pricing-matrix td { color: var(--text-secondary); width: 20%; font-size: 0.9rem; }
+.pricing-matrix tbody tr { transition: background 0.2s ease; }
+.pricing-matrix tbody tr:hover { background: hsla(180, 100%, 50%, 0.03); }
+.pricing-matrix tbody tr:last-child td { border-bottom: none; }
+
 .pricing-matrix .popular-col {
-    background: rgba(0, 240, 255, 0.02);
-    border-left: 1px dotted var(--accent-primary);
-    border-right: 1px dotted var(--accent-primary);
+    background: hsla(180, 100%, 50%, 0.02);
+    border-left: 1px dotted hsla(180, 100%, 50%, 0.2);
+    border-right: 1px dotted hsla(180, 100%, 50%, 0.2);
 }
-.pricing-matrix th.popular-col { background: rgba(0, 240, 255, 0.08); color: var(--accent-primary); }
-.text-accent { color: var(--accent-primary); width: 20px; height: 20px; vertical-align: middle; }
-.text-muted { color: var(--text-muted); width: 20px; height: 20px; vertical-align: middle; }
+.pricing-matrix th.popular-col { background: hsla(180, 100%, 50%, 0.08); color: var(--accent-primary); }
+.text-accent { color: var(--accent-primary); width: 18px; height: 18px; vertical-align: middle; }
+.text-muted { color: var(--text-muted); width: 18px; height: 18px; vertical-align: middle; }
+
+@media (max-width: 600px) {
+    .pricing-tables-grid {
+        grid-template-columns: 1fr;
+    }
+    .pricing-matrix td:first-child { width: auto; }
+    .pricing-matrix td { width: auto; }
+}
 
 /* Pricing Addons */
 .pricing-addons h3 { margin-bottom: 1.5rem; color: white; }

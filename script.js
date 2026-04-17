@@ -39,7 +39,7 @@ function animateCursor() {
 animateCursor();
 
 // --- MAGNETIC & TILT ELEMENTS ---
-const interactives = document.querySelectorAll('[data-magnetic], .card, .service-card, .price-header-card, .btn');
+const interactives = document.querySelectorAll('[data-magnetic], .card, .service-card, .price-header-card, .btn, .testimonial-card, .stat-card, .addon-card, .cta-box, .feature-table-card');
 
 interactives.forEach(el => {
     el.addEventListener('mousemove', (e) => {
@@ -58,12 +58,13 @@ interactives.forEach(el => {
             const moveX = (x - centerX) * 0.2;
             const moveY = (y - centerY) * 0.2;
             el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        } else if (el.classList.contains('card') || el.classList.contains('service-card')) {
+        } else {
+            // General Tilt for cards
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            const rotateX = (centerY - y) / 10;
-            const rotateY = (x - centerX) / 10;
-            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            const rotateX = (centerY - y) / 15;
+            const rotateY = (x - centerX) / 15;
+            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.01)`;
         }
         
         // Cursor Feedback
