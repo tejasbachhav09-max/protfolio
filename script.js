@@ -1,6 +1,10 @@
 // 1. Interaction Engine - Obsidian Kinetic
 
-// --- CUSTOM CURSOR & SPOTLIGHT ---
+// --- MOBILE DETECTION ---
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const isMobile = isTouchDevice || window.innerWidth <= 768;
+
+// --- CUSTOM CURSOR & SPOTLIGHT (Desktop Only) ---
 const cursor = document.getElementById('cursor');
 const spotlight = document.getElementById('cursor-spotlight');
 const glows = document.querySelectorAll('.glow');
@@ -8,96 +12,107 @@ const glows = document.querySelectorAll('.glow');
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    // Move spotlight instantly for zero lag
-    if (spotlight) {
-        spotlight.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-    }
-
-    // Parallax background glows
-    glows.forEach((glow, index) => {
-        const speed = (index + 1) * 2;
-        const x = (window.innerWidth / 2 - mouseX) / (25 * speed);
-        const y = (window.innerHeight / 2 - mouseY) / (25 * speed);
-        glow.style.transform = `translate(${x}px, ${y}px)`;
-    });
-});
-
-// Smooth cursor follow
-function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.15;
-    cursorY += (mouseY - cursorY) * 0.15;
-    
-    if (cursor) {
-        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-    }
-    requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-// --- MAGNETIC & TILT ELEMENTS ---
-const interactives = document.querySelectorAll('[data-magnetic], .card, .service-card, .price-header-card, .btn, .testimonial-card, .stat-card, .addon-card, .cta-box, .feature-table-card');
-
-interactives.forEach(el => {
-    el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+if (!isTouchDevice) {
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         
-        // Localized Glow (for buttons and cards)
-        el.style.setProperty('--mouse-x', `${x}px`);
-        el.style.setProperty('--mouse-y', `${y}px`);
-
-        // Magnetic / Tilt Logic
-        if (el.hasAttribute('data-magnetic') || el.classList.contains('btn')) {
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const moveX = (x - centerX) * 0.2;
-            const moveY = (y - centerY) * 0.2;
-            el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        } else {
-            // General Tilt for cards
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (centerY - y) / 15;
-            const rotateY = (x - centerX) / 15;
-            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.01)`;
+        // Move spotlight instantly for zero lag
+        if (spotlight) {
+            spotlight.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
         }
+
+        // Parallax background glows
+        glows.forEach((glow, index) => {
+            const speed = (index + 1) * 2;
+            const x = (window.innerWidth / 2 - mouseX) / (25 * speed);
+            const y = (window.innerHeight / 2 - mouseY) / (25 * speed);
+            glow.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    });
+
+    // Smooth cursor follow
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
         
-        // Cursor Feedback
-        if (cursor) cursor.classList.add('active');
-    });
-
-    el.addEventListener('mouseleave', () => {
-        el.style.transform = ``;
-        if (cursor) cursor.classList.remove('active');
-    });
-});
-
-// --- KINETIC SCROLLING (LENIS) ---
-try {
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+        if (cursor) {
+            cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        }
+        requestAnimationFrame(animateCursor);
     }
-    requestAnimationFrame(raf);
-} catch (e) {
-    console.warn('Lenis scroll engine failed to initialize:', e);
+    animateCursor();
+} else {
+    // Hide cursor elements on touch devices
+    if (cursor) cursor.style.display = 'none';
+    if (spotlight) spotlight.style.display = 'none';
+}
+
+// --- MAGNETIC & TILT ELEMENTS (Desktop Only) ---
+if (!isTouchDevice) {
+    const interactives = document.querySelectorAll('[data-magnetic], .card, .service-card, .price-header-card, .btn, .testimonial-card, .stat-card, .addon-card, .cta-box, .feature-table-card');
+
+    interactives.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Localized Glow (for buttons and cards)
+            el.style.setProperty('--mouse-x', `${x}px`);
+            el.style.setProperty('--mouse-y', `${y}px`);
+
+            // Magnetic / Tilt Logic
+            if (el.hasAttribute('data-magnetic') || el.classList.contains('btn')) {
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const moveX = (x - centerX) * 0.2;
+                const moveY = (y - centerY) * 0.2;
+                el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            } else {
+                // General Tilt for cards
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (centerY - y) / 15;
+                const rotateY = (x - centerX) / 15;
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.01)`;
+            }
+            
+            // Cursor Feedback
+            if (cursor) cursor.classList.add('active');
+        });
+
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = ``;
+            if (cursor) cursor.classList.remove('active');
+        });
+    });
+}
+
+// --- KINETIC SCROLLING (LENIS) - Desktop Only ---
+// Disable smooth scroll on touch devices for better native scroll feel
+if (!isTouchDevice) {
+    try {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    } catch (e) {
+        console.warn('Lenis scroll engine failed to initialize:', e);
+    }
 }
 
 // 2. Scroll Reveal Animation (Fade In)
@@ -131,6 +146,25 @@ const navLinks = document.querySelector('.nav-links');
 if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
+        // Toggle aria-expanded for accessibility
+        const isOpen = navLinks.classList.contains('active');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile nav when a link is tapped
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Close mobile nav when tapping outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
     });
 }
 

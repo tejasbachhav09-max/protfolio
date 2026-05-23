@@ -963,26 +963,531 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Mobile Responsive */
+
+/* === TABLET BREAKPOINT === */
 @media (max-width: 992px) {
+    :root {
+        --section-pad: 6rem;
+    }
+
     .solution-layout, .demo-wrapper { grid-template-columns: 1fr; }
     .pricing-card.popular { transform: scale(1); }
     .pricing-card.popular:hover { transform: translateY(-5px); }
+
+    .pricing-cards-modern {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .price-header-card.popular {
+        transform: scale(1);
+    }
+    .price-header-card.popular:hover {
+        transform: translateY(-5px);
+    }
+
+    .pricing-tables-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .demo-video-container {
+        min-height: 280px;
+        border-left: none;
+        border-top: 1px dashed var(--border);
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-brand {
+        max-width: 100%;
+    }
+    .footer-links {
+        justify-content: center;
+    }
 }
 
+/* === MOBILE BREAKPOINT === */
 @media (max-width: 768px) {
+    :root {
+        --section-pad: 4rem;
+    }
+
+    /* Hide custom cursor on touch/mobile */
+    #cursor,
+    #cursor-spotlight {
+        display: none !important;
+    }
+
+    /* Navbar */
+    .navbar {
+        top: 0.75rem;
+        width: 95%;
+        padding: 0.6rem 1.25rem;
+        border-radius: var(--radius);
+    }
+    .navbar.scrolled {
+        top: 0;
+        width: 100%;
+        border-radius: 0;
+    }
     .nav-links {
-        display: none; position: absolute; top: 100%; left: 0; right: 0;
-        background: var(--bg-main); flex-direction: column; padding: 2rem;
-        border-bottom: 1px solid var(--border); text-align: center;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: hsla(240, 10%, 4%, 0.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        text-align: center;
+        gap: 0.5rem;
+        border-radius: 0 0 var(--radius) var(--radius);
     }
     .nav-links.active { display: flex; }
+    .nav-links a {
+        padding: 0.75rem 0;
+        font-size: 1.05rem;
+    }
     .menu-toggle { display: block; }
     .navbar .btn { display: none; }
-    
-    .hero { padding-top: 8rem; padding-bottom: 4rem; }
-    .hero-cta { flex-direction: column; }
-    
-    .process-steps { flex-direction: column; align-items: center; gap: 3rem; }
+
+    /* Typography scaling */
+    h1 { font-size: clamp(2rem, 8vw, 3.5rem) !important; }
+    h2 { font-size: clamp(1.5rem, 6vw, 2.5rem) !important; }
+    p { font-size: 1rem; }
+
+    /* Hero Section */
+    .hero {
+        padding-top: 7rem;
+        padding-bottom: 3rem;
+        min-height: auto;
+    }
+    .hero h1 {
+        font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+        line-height: 0.95;
+        margin-bottom: 1.5rem;
+    }
+    .subtitle {
+        font-size: 1rem !important;
+        padding: 0 0.5rem;
+    }
+    .hero-cta {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+        justify-content: center;
+    }
+    .badge {
+        font-size: 0.65rem;
+        padding: 0.5rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .social-proof-small {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .social-proof-small span {
+        font-size: 0.8rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+    .section-header h2 {
+        margin-bottom: 0.75rem;
+    }
+    .section-header p {
+        font-size: 0.95rem;
+    }
+
+    /* Cards */
+    .card {
+        padding: 2rem 1.5rem;
+    }
+    .problem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Solution Layout */
+    .solution-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .feature-item {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    .feature-icon {
+        width: 42px;
+        height: 42px;
+    }
+    .feature-item h4 { font-size: 1rem; }
+    .feature-item p { font-size: 0.9rem; }
+
+    .solution-stats {
+        padding: 2rem 1.5rem;
+    }
+    .stat-card h3 {
+        font-size: 2rem;
+    }
+
+    /* Services Grid */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+
+    /* Process Steps */
+    .process-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
     .step-connector { display: none; }
-    .step-content { max-width: 300px; margin: 0 auto; }
+    .step-content {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .step-number {
+        width: 52px;
+        height: 52px;
+        font-size: 1.25rem;
+    }
+
+    /* Demo Section */
+    .demo-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .demo-content {
+        padding: 2rem 1.5rem;
+    }
+    .demo-video-container {
+        min-height: 220px;
+        border-left: none;
+        border-top: 1px dashed var(--border);
+    }
+    .proof-text {
+        font-size: 1.05rem;
+        margin: 1.5rem 0;
+    }
+
+    /* Testimonials */
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+    .testimonial-card {
+        padding: 1.75rem;
+    }
+    .testimonial-card p {
+        font-size: 1rem;
+    }
+    .author img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Pricing Section */
+    .pricing-cards-modern {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .price-header-card {
+        padding: 2rem 1.5rem;
+    }
+    .price-header-card.popular {
+        transform: scale(1);
+    }
+    .price-header-card.popular:hover {
+        transform: translateY(-5px);
+    }
+    .popular-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.75rem;
+    }
+    .price-value {
+        font-size: 1.8rem;
+    }
+
+    .pricing-tables-grid {
+        grid-template-columns: 1fr;
+    }
+    .pricing-matrix th,
+    .pricing-matrix td {
+        padding: 0.65rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    .pricing-matrix td:first-child {
+        width: auto;
+        font-size: 0.75rem;
+    }
+    .pricing-matrix td {
+        width: auto;
+    }
+    .table-category-title {
+        font-size: 1rem !important;
+        padding: 0.8rem 1rem !important;
+    }
+
+    /* Add-ons Grid */
+    .addons-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+    .addon-card {
+        padding: 1.25rem;
+    }
+    .addon-card h4 {
+        font-size: 0.85rem;
+    }
+    .addon-price {
+        font-size: 0.95rem;
+    }
+
+    /* CTA Section */
+    .cta-box {
+        padding: 2.5rem 1.5rem;
+    }
+    .cta-box h2 {
+        margin-bottom: 0.75rem;
+    }
+    .cta-box .btn {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 3rem 0 1.5rem;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    .footer-brand {
+        max-width: 100%;
+    }
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .copyright {
+        font-size: 0.8rem;
+    }
+
+    /* Modal */
+    .modal-container {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        border-radius: 1.5rem;
+        max-height: 85vh;
+    }
+    .modal-header h3 {
+        font-size: 1.5rem;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    input, textarea, select {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    /* Disable heavy hover effects on mobile (touch devices) */
+    .card:hover::before,
+    .service-card:hover::before,
+    .price-header-card:hover::before,
+    .pricing-table-container:hover::before {
+        width: 0;
+        height: 0;
+    }
+
+    /* Smoother section transitions */
+    .section {
+        padding: var(--section-pad) 1rem;
+    }
+
+    /* Fix display-lg on mobile */
+    .display-lg {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+}
+
+/* === SMALL MOBILE BREAKPOINT === */
+@media (max-width: 480px) {
+    :root {
+        --section-pad: 3rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.8rem, 9vw, 2.8rem) !important;
+    }
+
+    .hero-cta .btn {
+        max-width: 100%;
+        font-size: 0.75rem;
+        padding: 0.9rem 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .service-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .stat-card h3 {
+        font-size: 1.75rem;
+    }
+
+    /* Stack addons single column on very small screens */
+    .addons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Pricing table scroll hint */
+    .pricing-table-container {
+        position: relative;
+    }
+    .pricing-matrix th,
+    .pricing-matrix td {
+        padding: 0.5rem 0.5rem;
+        font-size: 0.72rem;
+    }
+    .pricing-matrix td:first-child {
+        font-size: 0.68rem;
+    }
+    .table-category-title {
+        font-size: 0.85rem !important;
+    }
+
+    .price-header-card h3 {
+        font-size: 1.25rem;
+    }
+    .price-value {
+        font-size: 1.5rem;
+    }
+    .best-for {
+        font-size: 0.85rem;
+        min-height: auto;
+    }
+    .setup-fee {
+        font-size: 0.8rem;
+    }
+
+    .testimonial-card {
+        padding: 1.25rem;
+    }
+    .testimonial-card p {
+        font-size: 0.95rem;
+    }
+
+    .modal-container {
+        padding: 1.5rem 1rem;
+        border-radius: 1rem;
+    }
+    .modal-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .demo-content {
+        padding: 1.5rem 1rem;
+    }
+
+    .section-header {
+        margin-bottom: 2rem;
+    }
+
+    .feature-item {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+/* === TOUCH DEVICE OPTIMIZATIONS === */
+@media (hover: none) and (pointer: coarse) {
+    /* Hide custom cursor elements */
+    #cursor,
+    #cursor-spotlight {
+        display: none !important;
+    }
+
+    /* Disable tilt/magnetic effects on touch */
+    .card,
+    .service-card,
+    .price-header-card,
+    .btn,
+    .testimonial-card,
+    .stat-card,
+    .addon-card,
+    .cta-box,
+    .feature-table-card {
+        transform: none !important;
+    }
+
+    /* Disable radial glow pseudo-elements on touch */
+    .card::before,
+    .service-card::before,
+    .price-header-card::before,
+    .pricing-table-container::before,
+    .btn::before {
+        display: none !important;
+    }
+
+    /* Improve tap targets */
+    .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .menu-toggle {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Disable smooth scrolling on touch - let native scrolling work */
+    html {
+        scroll-behavior: smooth;
+    }
 }
